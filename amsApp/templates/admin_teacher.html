@@ -1,0 +1,101 @@
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% include "header.html" %}
+{% include "admin_header.html" %}
+
+{% include "admin_nav.html" %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class=" align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">HOD</h1>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row g-5">
+
+        <div class="col-12">
+                          
+                        <div class="card card-body mb-3">
+                            
+                                <div class="d-flex justify-content-end pb-3">
+                                    <a href={% url 'admin_teacher_url' %} class="btn btn-primary btn-sm">
+                                        New + 
+                                    </a>
+                                </div>
+                            <div class="table-responsive">    
+                                    <table class="table table-hover">
+                                           <thead class="table">
+                                                 <tr class="bg-light p-2">
+                                                <th>ID No.</th>
+                                                <th>Name</th>
+                                                <th>Gender</th>
+                                                <th>Date of Birth</th>
+
+                                                <th>Department</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                                
+                                            </tr>
+                                            </thead>
+                                        
+                                        {% for teacher in teacher_p %}
+                                             <tbody>
+                                                 <tr>
+                                                <th>{{teacher.id}}</th>
+                                                <th>{{teacher.name}}</th>
+                                                <th>{{teacher.gender}}</th>
+                                                <th>{{teacher.DOB}}</th>
+                                                <th>{{teacher.dept}}</th>
+                                                
+                                         
+                                                
+                                    
+                                                <th><a href={% url 'admin_teacher_update_url' teacher.id %} class="btn btn-sm btn-outline-warning">Update</a></th>
+                                                <th><a href={% url 'admin_teacher_delete_url' teacher.id %} class="btn btn-sm btn-outline-danger">Delete</a></th>
+                                                
+                                            </tr>
+                                             </tbody> 
+                                        {% endfor %}
+            
+                               
+                                    </table>
+                                </div>
+                        </div>
+        </div>
+
+        <div class="col-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="card shadow-lg">
+                    <div class="card-header">
+                            Teacher Registration
+                        </div>
+                    <div class="card-body">                                            
+                        {{form|crispy}}
+                    </div>                                            
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </div>
+                <div class="p-3">
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                   
+            </form>
+        </div>
+
+      
+        
+        
+    </div>
+
+</div> 
+</main> 
+      
+
+{% include "footer.html" %}

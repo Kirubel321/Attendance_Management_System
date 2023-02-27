@@ -1,0 +1,56 @@
+
+{% load static %}
+
+
+{% include "header.html" %}
+{% include "admin_header.html" %}
+
+{% include "admin_nav.html" %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class=" pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">HOD</h1>
+
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row g-5">
+
+        <div class="col-12">
+            <div class="card shadow-lg">
+                <h5 class="card-header">Deleting Student information </h5>
+                <div class="card-body">
+                    <form action="{% url 'admin_student_delete_url' student.USN %}" method="post">
+                        {% csrf_token %}
+            
+                        <div class="card m-5 pl-5">
+                                <div class="card-header">
+                                    
+                                    </div>
+                                <div class="card-body">
+                                        
+                                    <p>Are you sure you want to delete "{{student}}"</p>
+                                </div>
+                                        
+                                <div class="card-footer">
+                                    <a class="btn btn-sm btn-secondary" href="{% url 'admin_student_url' %}">Cancel</a>
+                                    <input class="btn btn-sm btn-danger" type="submit" value="Confirm">
+                                </div>
+                            </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+      
+
+         
+    </div>
+
+</div> 
+</main> 
+      
+
+{% include "footer.html" %}

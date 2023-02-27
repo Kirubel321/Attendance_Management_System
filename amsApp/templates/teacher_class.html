@@ -1,0 +1,71 @@
+  
+{% load static %}
+
+{% load avatar_tags %}
+
+{% include "header.html" %}
+{% include "teacher_header.html" %}
+
+
+<div class="container-fluid">
+
+
+   <div class="row py-3">
+    <div class="col d-flex justify-content-end">
+      {% avatar user 65 class="rounded-circle" id="user_avatar" %}
+    </div>
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class=" align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ request.user.teacher.name }}</h1>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row g-5">
+
+        <div class="col-12">
+            <div class="card shadow-lg text-center">
+              <div class="card-header">
+               Class Table</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Course</th>
+                                <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for ass in teacher1.assign_set.all %}
+                            <tr>
+                                <td>{{ ass.class_id }}</td>
+                                <td>{{ ass.course }}</td>
+                                <td>
+                                  <a class="btn btn-sm btn-outline-primary" href="{% url 't_class_date_url' ass.id %}" role="button">Enter Attendance</a>
+                                  <a class="btn btn-sm btn-outline-secondary" href="{% url 't_student_url' ass.id %}">View Students</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                                    <p>teacher has no courses</p>
+                            {% endfor %}
+                    
+                          </tbody>
+                        </table>
+                    </div>
+              </div>
+
+        </div>
+
+
+        
+    </div>
+
+</div> 
+</main> 
+</div>
+</div>
+
+{% include "footer.html" %}

@@ -1,0 +1,58 @@
+{% load static %}
+{% load avatar_tags %}
+
+{% load active_link_tags %}
+<div class="container-fluid">
+    <div class="row" >
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item ">
+              <a class="nav-link fw-bold {% active_link 'admin_session_year_url' 'sidebar_active' %}" aria-current="page" href={% url 'admin_home_url' %}>
+                <span data-feather="home" class="align-text-bottom"></span>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold {% active_link 'admin_session_year_url' 'sidebar_active' %}" href={% url 'admin_teacher_url' %}>
+                <span data-feather="users" class="align-text-bottom"></span>
+                Manage Teacher
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link fw-bold {% active_link 'admin_session_year_url' 'sidebar_active' %}" href="{% url 'admin_student_url' %}">
+                <span data-feather="users" class="align-text-bottom"></span>
+                Manage Student
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold {% active_link 'admin_session_year_url' 'sidebar_active' %}" href="{% url 'admin_course_url' %}">
+                <span data-feather="book" class="align-text-bottom"></span>
+                Manage Course
+              </a>
+            </li> 
+   
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="{% url 'admin_notification_teacher_url' %}">
+                <span data-feather="message-square" class="align-text-bottom"></span>
+                Teachers Notification
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold {% active_link 'admin_session_year_url' 'sidebar_active' %}" href="{% url 'admin_notification_student_url' %}">
+                <span data-feather="message-square" class="align-text-bottom"></span>
+                Student Notification
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold {% active_link 'admin_session_year_url' 'sidebar_active' %}" href="{% url 'hod_registration_url' %}">
+                <span data-feather="users" class="align-text-bottom"></span>
+                HOD registration
+              </a>
+            </li>
+          </ul>
+          
+        </div>
+        
+      </nav>
+  

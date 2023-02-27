@@ -1,0 +1,62 @@
+
+{% load static %}
+{% load avatar_tags %}
+
+{% include "header.html" %}
+{% include "student_header.html" %}
+
+<div class="container-fluid">
+  
+
+  <div class="row py-3">
+    <div class="col d-flex justify-content-end">
+      {% avatar user 65 class="rounded-circle" id="user_avatar" %}
+    </div>
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class=" pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ request.user.student.name }}</h1>
+  
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row g-5">
+        <div class="col-12">
+          <div class="card shadow-lg">
+              <h5 class="card-header">Notification</h5>
+              <div class="card-body">
+                {% for note in studentNote %}
+                <div class="card col-5">
+                  <h5 class="card-header">Notification- {{note.id}}</h5>
+                  <div class="card-body">
+                    <p>
+                      message - {{note.message}}
+                    </p>
+                    <p>
+                      To - {{request.user.student.name}}
+                    </p>
+                  </div>
+                  
+                  <div class="card-footer text-muted">
+                    <div>Created At - {{noteTeacher.created_at}}</div>
+                    <div>Updated At - {{noteTeacher.updated_at}}</div>
+                  </div>
+                                   
+                </div>
+                {% endfor %}
+
+
+              </div>
+          </div>
+        </div> 
+    </div>
+
+</div> 
+</main> 
+</div>
+</div>
+      
+
+{% include "footer.html" %}

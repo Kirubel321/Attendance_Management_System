@@ -1,0 +1,35 @@
+{% extends 'logBase.html' %}
+{% load static %}
+{% block content%}
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                        <div class="card-body">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                               <div class="form-floating mb-3">
+                                    <input name="username" class="form-control" id="inputUsername" type="text" placeholder="Email Address" />
+                                    <label for="inputUsername">User Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input name="password" class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                    <label for="inputPassword">Password</label>
+                                </div> 
+                                <div class="mt-4 mb-0 text-center">
+                                    <input type="submit" class="btn btn-primary" value="Login">
+                                </div>
+                            </form>
+                        </div>
+                        {% if messages %}
+                        <div class="card-footer text-muted">
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+           
+                        <div div class="card-footer text-center py-3">
+                            <a class="btn btn-outline-primary"  href={% url 'reset_password' %}>Forget password?</a>
+                        </div>
+            </div>
+{% endblock content%}

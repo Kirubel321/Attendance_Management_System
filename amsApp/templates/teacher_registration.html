@@ -1,0 +1,41 @@
+{% extends 'logBase.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+               
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+            <div class="card-body">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="row mb-3 ">
+                        {{form|crispy}}        
+                    </div>
+                        <div class="mt-4 text-center">
+                            <input type="submit" class="btn btn-primary" value="Create Account">
+                        </div>
+                </form> 
+
+            </div>
+            <div class="p-3">   
+                {% if messages %}
+                <div class="col-12">
+                {% for message in messages %}
+                {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                    <b>{{ message }}</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="card-footer text-center py-3">
+                <div class="small"><a href={% url 'login_url' %}>Have an account? Go to login</a></div>
+            </div>
+        </div>
+                       
+{% endblock content%}

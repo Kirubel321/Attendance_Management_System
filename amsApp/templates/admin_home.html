@@ -1,0 +1,41 @@
+
+{% load static %}
+{% load avatar_tags %}
+
+{% include "header.html" %}
+{% if request.user.is_authenticated %}
+{% if request.user.role == 'ADMIN'%}
+{% include "admin_header.html" %}
+
+
+{% include "admin_nav.html" %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="pt-3 pb-2 mb-3 border-bottom">
+    <div class="col">
+      {% avatar user 65 class="rounded-circle" id="user_avatar" %}
+    </div>
+    <h1 class="h2">{{ request.user.name }}</h1>
+    <h6>Logged as a Admin</h6>
+  </div>
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <div class="bg-light p-5 rounded-lg m-3">
+        <h1 class="display-4">Welcome {{ request.user.first_name }}</h1>
+        <p class="lead"></p>
+        <hr class="my-4">
+        
+        
+      </div>
+    </div>
+  </div>
+
+</main> 
+{% else %}
+<p>You're not allowed  in this page - <a href={% url 'login_url' %}>login</a>?</p>
+{% endif %}
+{% else %}
+<p>You're already logged in. Would you like to <a href={% url login_url %}>login</a>?</p>
+{% endif %}
+
+{% include "footer.html" %}

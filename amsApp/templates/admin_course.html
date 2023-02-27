@@ -1,0 +1,111 @@
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% include "header.html" %}
+{% include "admin_header.html" %}
+
+{% include "admin_nav.html" %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class=" pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">HOD</h1>
+
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row g-5">
+
+        <div class="col-12">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="bg-dark text-white p-2 mt-5 rounded">
+                            <h5>Course List</h5>
+                        </div>
+                        
+                        <hr>
+                        <div class="card card-body">
+                            
+                                <div class="d-flex justify-content-end pb-3">
+                                    <a href={% url 'admin_course_url' %} class="btn btn-primary btn-sm">
+                                        New + 
+                                    </a>
+                                </div>
+                            <div class="table-responsive">    
+                                    <table class="table  table-hover">
+                                            <thead class="table-dark">
+                                                <tr class="bg-light p-2">
+                                                    <th>#Course ID</th>
+                                                    <th>Course Name</th>
+                                                    <th>Course Short Name</th>
+                                                    <th>Department</th>
+                                                    <th>Update</th>
+                                                    <th>Delete</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                        
+                                        {% for course in course %}
+                                        
+                                            <tbody>
+                                                <tr>
+                                                    <th>{{course.id}}</th>
+                                                    <th>{{course.name}}</th>       
+                                                    <th>{{course.shortname}}</th>     
+                                                    <th>{{course.dept.name}}</th>      
+                                                    
+                                                    
+
+                                                   <th><a href={% url 'admin_course_update_url' course.id %} class="btn btn-sm btn-outline-warning">Update</a></th>
+                                                    <th><a href={% url 'admin_course_delete_url' course.id %} class="btn btn-sm btn-outline-danger">Delete</a></th> 
+                                                    
+                                                </tr> 
+                                            </tbody>
+                                        {% endfor %}
+            
+                                     
+            
+                                    </table>
+                                </div>
+                        </div>
+                                    
+                           
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="card shadow-lg">
+                    <div class="card-header">
+                            Student Registration
+                        </div>
+                    <div class="card-body">                                            
+                        {{form|crispy}}
+                    </div>                                            
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </div>
+                <div class="p-3">
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                   
+            </form>
+        </div>
+
+         
+    </div>
+
+</div> 
+</main> 
+      
+
+{% include "footer.html" %}

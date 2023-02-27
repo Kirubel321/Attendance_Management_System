@@ -1,0 +1,74 @@
+
+{% load static %}
+{% load avatar_tags %}
+
+
+{% include "header.html" %}
+{% include "student_header.html" %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="row">
+      <div class="col d-flex justify-content-lg-end justify-content-md-end">
+        {% avatar user 65 class="rounded-circle" id="user_avatar" %}
+      </div>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ request.user.student.name }} </h1>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card text-center shadow-lg">
+                <div class="card-header">
+                  Attendance
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead class="thead-light ">
+                          <tr>
+                              <th>Course ID</th>
+                              <th>Course name</th>
+                              <th>Attended classes</th>
+                              <th>Total classes</th>
+                              <th>Attendance %</th>
+                              <th>Classes to attend</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for a in att_list %}
+                          <tr>
+                              <td>{{ a.course_id }}</td>
+                            
+                              <td>{{a.course.name}}</td>
+                              <td>{{ a.att_class }}</td>
+                              <td>{{ a.total_class }}</td>
+                              {% if a.attendance < 75 %}
+                                  <td class="p-3 mb-2 bg-danger text-white">{{ a.attendance }}</td>
+                              {% else %}
+                                  <td class="p-3 mb-2 bg-success text-white">{{ a.attendance }}</td>
+                              {% endif %}
+                              <td>{{ a.classes_to_attend }}</td>
+                          </tr>
+                          {% empty %}
+                                  <p>student has no courses</p>
+                          {% endfor %}
+      
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </div>
+        </div>
+        
+    </div>
+   
+</div>
+    </div>
+</div> 
+</main> 
+      
+
+{% include "footer.html" %}

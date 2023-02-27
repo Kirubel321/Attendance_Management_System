@@ -1,0 +1,74 @@
+
+{% load static %}
+{% load avatar_tags %}
+
+{% include "header.html" %}
+{% include "teacher_header.html" %}
+
+<div class="container-fluid">
+  
+
+  <div class="row py-3">
+    <div class="col d-flex justify-content-end">
+      {% avatar user 65 class="rounded-circle" id="user_avatar" %}
+    </div>
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class=" align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ request.user.teacher.name }}</h1>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row g-5">
+
+        <div class="col">
+            <div class="card shadow-lg text-center">
+              <div class="card-header">
+               <b>Student Attendace</b></div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                          <th scope="col">USN</th>
+                          <th scope="col">Student name</th>
+                          <th scope="col">Attended classes</th>
+                          <th scope="col">Total classes</th>
+                          <th scope="col">Attendance %</th>
+                          <th scope="col">Classes to attend</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for a in att_list %}
+                      <tr>
+                          <th>{{ a.student_id }}</th>
+                          <td>{{ a.student.name }}</td>        
+                          <td>{{ a.att_class }}</td>
+                          <td>{{ a.total_class }}</td>
+                          {% if a.attendance < 75 %}
+                              <td class="p-3 mb-2 bg-danger text-white">{{ a.attendance }}</td>
+                          {% else %}
+                              <td class="p-3 mb-2 bg-success text-white">{{ a.attendance }}</td>
+                          {% endif %}
+                          <td>{{ a.classes_to_attend }}</td>
+                      </tr>
+                      {% empty %}
+                              <p>No students</p>
+                      {% endfor %}
+  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div> 
+</main> 
+</div>
+</div>
+
+{% include "footer.html" %}
